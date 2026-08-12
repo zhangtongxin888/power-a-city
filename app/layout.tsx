@@ -19,13 +19,13 @@ export const metadata: Metadata = {
     url: site.domain,
     siteName: site.name,
     type: "website",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Power Your City Beginner Guide" }],
+    images: [{ url: "/og-control-room-1200x630.png", width: 1200, height: 630, alt: "Power Your City Beginner Grid Guide" }],
   },
   twitter: {
     card: "summary_large_image",
     title: site.name,
     description: "A verified beginner route for Power Your City.",
-    images: ["/og.png"],
+    images: ["/og-control-room-1200x630.png"],
   },
 };
 
@@ -33,7 +33,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: "#06101c",
-  colorScheme: "light",
+  colorScheme: "dark light",
 };
 
 const jsonLd = {

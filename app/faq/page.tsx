@@ -2,13 +2,25 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
 import { GuideNext } from "@/components/guide-next";
-import { pageMetadata } from "@/lib/site";
+import { pageMetadata, safeJsonLd } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata(
   "Power Your City FAQ",
   "Fact-checked answers about Power Your City, including the official name, core mechanics, player stealing, undocumented features, and changing game data.",
   "/faq",
 );
+
+const faqItems = [
+  ["Is the game called Power a City or Power Your City?", "The official Roblox experience is Power Your City. Power a City is the guide domain and a natural search phrase."],
+  ["What is the basic gameplay loop?", "Place generators to produce Power, place batteries to store Power, sell Power around the city for Cash, and account for players who can steal Power."],
+  ["Can other players steal my Power?", "Yes. This is listed in the official description, although its exact conditions are not documented there."],
+] as const;
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map(([name, text]) => ({ "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text } })),
+};
 
 export default function FaqPage() {
   return (
@@ -28,6 +40,7 @@ export default function FaqPage() {
         <p><Link className="text-link" href="/quick-start">Return to the five-minute walkthrough →</Link></p>
         <GuideNext href="/sources" title="Next: inspect the source policy" copy="See which official pages and APIs support the guide—and what we intentionally leave out." />
       </article>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }} />
     </>
   );
 }

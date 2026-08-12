@@ -24,7 +24,7 @@ test("uses verified official identity and careful claims", async () => {
   assert.match(joined, /Power Your City/);
   assert.doesNotMatch(joined, /best generator is|rebirth|prestige/i);
   assert.doesNotMatch(joined, /100KMEMBERS|stored Power (?:is|can be) stolen|offline earnings (?:exist|are confirmed)/i);
-  assert.match(joined, /OFFICIAL FACTS \+ GUIDE STRATEGY/);
+  assert.match(joined, /confirmed public mechanics; the fourth is a beginner strategy/i);
   assert.match(joined, /guide strategy/i);
   const site = await readFile(new URL("lib/site.ts", root), "utf8");
   for (const fact of ["81549698024226", "10297836599", "Restore Power", "2026-08-12"]) assert.match(site, new RegExp(fact));
@@ -60,13 +60,28 @@ test("starter UI is removed and SEO assets exist", async () => {
   const [page, layout, packageJson] = await Promise.all([readFile(new URL("app/page.tsx", root), "utf8"), readFile(new URL("app/layout.tsx", root), "utf8"), readFile(new URL("package.json", root), "utf8")]);
   assert.doesNotMatch(page + layout, /SkeletonPreview|codex-preview|Starter Project/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
-  for (const asset of ["public/robots.txt", "public/sitemap.xml", "public/manifest.webmanifest", "public/og.png", "public/game/official-icon.png"]) await access(new URL(asset, root));
+  for (const asset of ["public/robots.txt", "public/sitemap.xml", "public/manifest.webmanifest", "public/og-control-room-1200x630.png", "public/game/official-icon.png"]) await access(new URL(asset, root));
 });
 
 test("social image dimensions and sources are explicit", async () => {
-  const image = await readFile(new URL("public/og.png", root));
+  const image = await readFile(new URL("public/og-control-room-1200x630.png", root));
   assert.equal(image.readUInt32BE(16), 1200);
   assert.equal(image.readUInt32BE(20), 630);
   const sourcePage = await readFile(new URL("app/sources/page.tsx", root), "utf8");
   for (const name of ["blackout-to-grid", "connect-power", "output-growth", "income-scale", "equipment-scale", "icon"]) assert.match(sourcePage, new RegExp(`official-${name}\\.png`));
+});
+
+test("redesign keeps the first viewport tutorial-first and adds retention sections", async () => {
+  const [home, header, styles, faq] = await Promise.all([
+    readFile(new URL("app/page.tsx", root), "utf8"),
+    readFile(new URL("components/site-header.tsx", root), "utf8"),
+    readFile(new URL("app/globals.css", root), "utf8"),
+    readFile(new URL("app/faq/page.tsx", root), "utf8"),
+  ]);
+  assert.match(home, /Power one city block first/);
+  assert.match(home, /href="\/quick-start">\s*Start the 5-minute beginner guide/);
+  for (const section of ["LIVE DIAGNOSTICS", "GRID EXPANSION PLAN", "CONTROL ROOM INDEX", "QUICK ANSWERS"]) assert.match(home, new RegExp(section));
+  assert.match(header, /mobile-tutorial/);
+  assert.match(styles, /min-height:68px/);
+  assert.match(faq, /FAQPage/);
 });

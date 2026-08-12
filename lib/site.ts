@@ -27,9 +27,10 @@ export function pageMetadata(title: string, description: string, path: (typeof r
       url: canonical,
       siteName: site.name,
       type: "article",
-      images: [{ url: "/og.png", width: 1200, height: 630, alt: site.name }],
+      images: [{ url: "/og-control-room-1200x630.png", width: 1200, height: 630, alt: site.name }],
     },
-    twitter: { card: "summary_large_image", title, description, images: ["/og.png"] },
+    other: { "article:modified_time": "2026-08-12T00:00:00+08:00" },
+    twitter: { card: "summary_large_image", title, description, images: ["/og-control-room-1200x630.png"] },
   };
 }
 
