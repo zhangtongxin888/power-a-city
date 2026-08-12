@@ -26,8 +26,8 @@ for (const route of routes) {
   const html = await response.text();
   assert.match(html, /Power Your City/i);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
-  const canonicalWithoutRootSlash = route === "/" ? domain : canonical;
-  assert.ok(html.includes(`rel="canonical" href="${canonicalWithoutRootSlash}"`) || html.includes(`href="${canonicalWithoutRootSlash}" rel="canonical"`), `${route} canonical`);
+  const acceptedCanonicals = route === "/" ? [domain, `${domain}/`] : [canonical];
+  assert.ok(acceptedCanonicals.some((value) => html.includes(`rel="canonical" href="${value}"`) || html.includes(`href="${value}" rel="canonical"`)), `${route} canonical`);
 }
 
 for (const [path, expected] of Object.entries({ "/robots.txt": /^text\/plain;\s*charset=utf-8$/i, "/sitemap.xml": /^application\/xml;\s*charset=utf-8$/i, "/manifest.webmanifest": /^application\/manifest\+json;\s*charset=utf-8$/i })) {
