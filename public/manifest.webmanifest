@@ -1,0 +1,10 @@
+{
+  "name": "Power Your City Beginner Guide",
+  "short_name": "Power a City",
+  "description": "Independent beginner guides for Power Your City on Roblox.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#06101c",
+  "theme_color": "#06101c",
+  "icons": [{ "src": "/game/official-icon.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }]
+}

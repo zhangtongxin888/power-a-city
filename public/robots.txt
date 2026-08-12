@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://power-a-city.wiki/sitemap.xml
+Host: power-a-city.wiki
