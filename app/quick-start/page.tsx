@@ -7,8 +7,8 @@ import { StaticImage as Image } from "@/components/static-image";
 import { pageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata(
-  "Power Your City Quick Start",
-  "A five-minute, source-backed beginner walkthrough for generators, batteries, selling Power, reinvesting Cash, and avoiding early losses.",
+  "How to Play Power Your City: 5-Minute Beginner Guide",
+  "How to play Power Your City on Roblox: place your first panel and battery, collect and sell Power, negotiate the sale, lock your base and reinvest your Cash.",
   "/quick-start",
 );
 
@@ -26,8 +26,18 @@ export default function QuickStartPage() {
           <li><strong>Complete a city sale.</strong> Use the current in-game selling controls and confirm that Cash rises.</li>
           <li><strong>Repeat a short cycle.</strong> A small repeatable loop teaches more than a large setup you do not yet understand.</li>
           <li><strong>Reinvest in the clear bottleneck.</strong> If production cannot keep storage supplied, improve production. If storage stops the flow, improve storage.</li>
-          <li><strong>Account for theft.</strong> The official description confirms that players can steal Power, but it does not publish the target or conditions. Use the current game feedback to adjust your timing.</li>
+          <li><strong>Account for theft.</strong> The official description confirms that players can steal Power. A creator guide reports that thieves take Power from your batteries and that a green button outside your plant locks your base for a while, so lock up before a long sell trip.</li>
         </ol>
+        <h2 id="what-it-looks-like">What your first sale looks like in the game</h2>
+        <p>Creator guides on YouTube describe the same first loop. Use it to know what to expect; button names can change after updates.</p>
+        <ol className="flow-list">
+          <li><strong>Buy a panel and a battery</strong> from the shops in your plant. Creators call the generators “panels”.</li>
+          <li><strong>Collect the Power</strong> your setup has made. (The official <em>Auto Collect</em> game pass exists, which tells you collecting is normally done by hand.)</li>
+          <li><strong>Carry it out and sell it</strong> around the city for Cash.</li>
+          <li><strong>Negotiate the price.</strong> One creator reports a 50% chance of nearly doubling the payout and a slightly lower payout if it fails.</li>
+          <li><strong>Reinvest</strong> in whichever side is behind: panels if batteries stay empty, batteries if they fill up and wait.</li>
+        </ol>
+        <div className="callout"><strong>Got a boost code?</strong><p>TOTEM is reported to give 2x Power for 5 minutes. Use it when your panels are running and your batteries have room. <Link href="/codes">Check every Power Your City code →</Link></p></div>
         <PowerDiagram />
         <figure><Image src="/game/official-connect-power.png" alt="Official artwork showing a player beside a solar panel and cable-like power equipment" width={768} height={432} /><figcaption>Official game artwork depicting a solar panel and cable-like equipment. It does not verify exact interaction controls.</figcaption></figure>
         <h2>Your first-session checklist</h2>
@@ -38,7 +48,7 @@ export default function QuickStartPage() {
           <li>You observed which part of the visible flow may need attention.</li>
           <li>You understand that other players may steal Power.</li>
         </ul>
-        <div className="callout callout-yellow"><strong>Strategy, not a hidden rule</strong><p>You can test shorter sell cycles when theft is interrupting a session. The official description confirms stealing, but not what can be stolen, its range, timing, loss size, or protection rules.</p></div>
+        <div className="callout callout-yellow"><strong>Strategy, not a hidden rule</strong><p>You can test shorter sell cycles when theft is interrupting a session. Official sources confirm stealing but do not publish its range, timing, loss size or exact lock duration.</p></div>
         <p><Link className="text-link" href="/mistakes">Need a recovery shortcut? See common mistakes →</Link></p>
         <GuideNext href="/core-loop" title="Next: understand the core loop" copy="Turn the four actions into a mental model you can reuse every session." />
       </article>

@@ -3,13 +3,13 @@ import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
 const root = new URL("../", import.meta.url);
-const pages = ["app/page.tsx", "app/quick-start/page.tsx", "app/core-loop/page.tsx", "app/progression/page.tsx", "app/mistakes/page.tsx", "app/faq/page.tsx", "app/sources/page.tsx"];
+const pages = ["app/page.tsx", "app/codes/page.tsx", "app/quick-start/page.tsx", "app/core-loop/page.tsx", "app/progression/page.tsx", "app/mistakes/page.tsx", "app/faq/page.tsx", "app/sources/page.tsx"];
 
 test("declares complete beginner guide routes and sitemap", async () => {
   const [site, sitemap] = await Promise.all([readFile(new URL("lib/site.ts", root), "utf8"), readFile(new URL("public/sitemap.xml", root), "utf8")]);
   const routeBlock = site.match(/export const routes = \[([\s\S]*?)\] as const;/)?.[1] ?? "";
   const routes = [...routeBlock.matchAll(/"(\/[^"]*)"/g)].map((match) => match[1]);
-  assert.deepEqual(routes, ["/", "/quick-start", "/core-loop", "/progression", "/mistakes", "/faq", "/sources"]);
+  assert.deepEqual(routes, ["/", "/codes", "/quick-start", "/core-loop", "/progression", "/mistakes", "/faq", "/sources"]);
   const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
   assert.deepEqual(urls, routes.map((route) => `https://power-a-city.wiki${route}`));
   await Promise.all(pages.map((page) => access(new URL(page, root))));
@@ -22,12 +22,12 @@ test("uses verified official identity and careful claims", async () => {
   assert.match(joined, /batteries store Power/i);
   assert.match(joined, /steal Power/i);
   assert.match(joined, /Power Your City/);
-  assert.doesNotMatch(joined, /best generator is|rebirth|prestige/i);
-  assert.doesNotMatch(joined, /100KMEMBERS|stored Power (?:is|can be) stolen|offline earnings (?:exist|are confirmed)/i);
+  assert.doesNotMatch(joined, /best generator is|prestige/i);
+  assert.doesNotMatch(joined, /stored Power (?:is|can be) stolen|offline earnings (?:exist|are confirmed)/i);
   assert.match(joined, /confirmed public mechanics; the fourth is a beginner strategy/i);
   assert.match(joined, /guide strategy/i);
   const site = await readFile(new URL("lib/site.ts", root), "utf8");
-  for (const fact of ["81549698024226", "10297836599", "Restore Power", "2026-08-12"]) assert.match(site, new RegExp(fact));
+  for (const fact of ["81549698024226", "10297836599", "Restore Power", "2026-08-12", "2026-10-02", "Vivat's Workers", "127475054933484"]) assert.match(site, new RegExp(fact));
 });
 
 test("keeps the beginner route continuous and tutorial-first", async () => {
@@ -35,6 +35,7 @@ test("keeps the beginner route continuous and tutorial-first", async () => {
   assert.match(home, /button button-primary button-hero" href="\/quick-start"/);
   assert.doesNotMatch(home, /site\.gameUrl|roblox\.com/, "home must keep external play links away from the beginner-first path");
   const nextRoute = [
+    ["app/codes/page.tsx", "/quick-start"],
     ["app/quick-start/page.tsx", "/core-loop"],
     ["app/core-loop/page.tsx", "/progression"],
     ["app/progression/page.tsx", "/mistakes"],
@@ -84,4 +85,34 @@ test("redesign keeps the first viewport tutorial-first and adds retention sectio
   assert.match(header, /mobile-tutorial/);
   assert.match(styles, /min-height:68px/);
   assert.match(faq, /FAQPage/);
+});
+
+test("code statuses keep their evidence states and the other game stays separate", async () => {
+  const codes = await readFile(new URL("app/codes/page.tsx", root), "utf8");
+  assert.match(codes, /code: "TOTEM"[^}]*status: "working"[^}]*3 sources/);
+  for (const code of ["1MVISITS", "100KMEMBERS", "UPDATE2"]) assert.match(codes, new RegExp(`code: "${code}"[^}]*status: "disputed"`));
+  for (const code of ["20KLIKES", "SOLARPOWER"]) assert.match(codes, new RegExp(`code: "${code}"[^}]*status: "unverified"`));
+  assert.equal((codes.match(/status: "working",/g) ?? []).length, 1, "only codes with three independent sources may be labelled working");
+  assert.match(codes, /const wrongGameCodes = \["CITY13"/);
+  assert.match(codes, /FAQPage/);
+  assert.match(codes, /BreadcrumbList/);
+});
+
+test("only the homepage claims the wiki query and reported mechanics stay labelled", async () => {
+  const sources = await Promise.all(pages.map(async (page) => [page, await readFile(new URL(page, root), "utf8")]));
+  for (const [page, source] of sources) {
+    const title = source.match(/pageMetadata\(\s*"([^"]+)"/)?.[1] ?? "";
+    assert.ok(title.length > 0 && title.length <= 65, `${page} title length`);
+    if (page === "app/page.tsx") assert.match(title, /^Power a City Wiki/);
+    else assert.doesNotMatch(title, /wiki/i, `${page} must not compete for the wiki query`);
+  }
+  const site = await readFile(new URL("lib/site.ts", root), "utf8");
+  assert.doesNotMatch(site.match(/shortName: "([^"]+)"/)?.[1] ?? "", /wiki/i);
+  for (const [page, source] of sources) {
+    for (const match of source.matchAll(/[^.\n"`]*\b(?:rebirth|negotiat)[^.\n"`]*/gi)) {
+      if (match.index < source.indexOf("export const metadata") + 600) continue; // search-snippet promises are checked against the body below
+      if (/summary|tips|Plan your first|Rebirth &|#rebirth|Should I negotiate|What does rebirth|do not publish/i.test(match[0])) continue;
+      assert.ok(/report|creator|guide strategy|not published|not an official/i.test(source.slice(Math.max(0, match.index - 400), match.index + match[0].length + 200)), `${page}: unlabelled mechanic claim: ${match[0].trim().slice(0, 80)}`);
+    }
+  }
 });

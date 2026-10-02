@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 
 const navigation = [
   ["Quick start", "/quick-start"],
+  ["Codes", "/codes"],
   ["Core loop", "/core-loop"],
   ["Progression", "/progression"],
   ["Mistakes", "/mistakes"],

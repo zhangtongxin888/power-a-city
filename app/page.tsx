@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { StaticImage as Image } from "@/components/static-image";
-import { pageMetadata, site } from "@/lib/site";
+import { otherGame, pageMetadata, site } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata(
-  "Power Your City Beginner Guide: Your First 5 Minutes",
-  "New to Power Your City? Follow a fact-checked first-session route to generate Power, store it, make a city sale, and choose your next upgrade.",
+  "Power a City Wiki: Power Your City Roblox Guide & Codes",
+  "Power a City wiki for Roblox Power Your City by Restore Power: a 5-minute starter route, checked code status, stealing, selling and rebirth tips.",
   "/",
 );
 
@@ -28,12 +28,13 @@ const routeCards = [
   ["SYSTEM MAP", "Core loop", "Understand how the confirmed actions connect.", "/core-loop"],
   ["GRID EXPANSION", "Progression", "Improve the link that is visibly slowing you down.", "/progression"],
   ["FAULT LOG", "Common mistakes", "Recover from seven early setup problems.", "/mistakes"],
+  ["CODE STATUS", "Codes", "TOTEM plus the real status of every other code.", "/codes"],
 ] as const;
 
 const faqPreview = [
-  ["What is the official game name?", "Power Your City. “Power a City” is the guide domain and a natural search phrase."],
-  ["Can players steal Power?", "Yes. The official description confirms stealing, but does not publish the exact conditions."],
-  ["What is the best generator?", "No complete official public stat table was found. Compare the current in-game options."],
+  ["Is this Power Your City or ⚡Power a City?", "This wiki covers Power Your City by Restore Power. ⚡Power a City by Vivat’s Workers is a separate Roblox game with its own codes."],
+  ["Are there working codes?", "TOTEM (2x Power for 5 minutes) is the only code three independent trackers list as active on 2 October 2026."],
+  ["Can players steal Power?", "Yes, it is in the official description. Creator guides add that a thief is slowed until they get home, and a green base-lock button helps."],
 ] as const;
 
 export default function Home() {
@@ -44,7 +45,7 @@ export default function Home() {
         <div className="shell control-hero-grid">
           <div className="hero-command">
             <div className="control-label"><span className="pulse-dot" /> GRID CONTROL // FIRST SHIFT</div>
-            <p className="hero-overline">POWER YOUR CITY BEGINNER FIELD GUIDE</p>
+            <p className="hero-overline">POWER A CITY WIKI · POWER YOUR CITY ON ROBLOX</p>
             <h1>New here?<br /><span>Power one city block first.</span></h1>
             <p className="hero-answer">
               Your next move is simple: build one small <strong>generate → store → sell</strong> cycle,
@@ -56,7 +57,7 @@ export default function Home() {
               </Link>
               <Link className="button button-wire" href="/core-loop">See the gameplay loop</Link>
             </div>
-            <p className="hero-source-note"><span>FACT CHECK</span> Core actions verified from the official experience description on {site.verifiedOn}.</p>
+            <p className="hero-source-note"><span>FACT CHECK</span> Core actions, game identity and code status rechecked on {site.checkedOn}.</p>
           </div>
 
           <div className="shift-console" aria-label="First-session mission preview">
@@ -85,6 +86,17 @@ export default function Home() {
           <span><b>02</b><i>STORE</i><small>Batteries store Power</small></span>
           <span><b>03</b><i>SELL</i><small>City sales earn Cash</small></span>
           <span><b>04</b><i>WATCH</i><small>Players can steal Power</small></span>
+        </div>
+      </section>
+
+      <section className="section shell" id="game-check">
+        <div className="section-heading section-heading-wide">
+          <div><span className="eyebrow">GAME CHECK // 2 OCT 2026</span><h2>Which “Power a City” game are you playing?</h2></div>
+          <p className="section-summary">Two different Roblox tycoons use almost the same name. Check the title and creator before you follow a guide or try a code.</p>
+        </div>
+        <div className="game-check-grid">
+          <article className="is-this-guide"><span className="fact-label fact-label-confirmed">THIS WIKI COVERS IT</span><h3>{site.gameName} · by {site.creator}</h3><p>Place panels and batteries, collect Power, sell it around the city for Cash, and steal Power from other players. Over 18.7 million visits on Roblox.</p><p><Link className="text-link" href="/codes">Power Your City codes →</Link></p></article>
+          <article><span className="fact-label fact-label-unknown">DIFFERENT GAME</span><h3>{otherGame.name} · by {otherGame.creator}</h3><p>A separate game about connecting generators to villages and cities. Its codes (such as CITY13) and its guides do not apply to Power Your City.</p><p><Link className="text-link" href="/faq#which-game">How to tell them apart →</Link></p></article>
         </div>
       </section>
 

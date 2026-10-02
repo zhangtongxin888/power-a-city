@@ -6,8 +6,8 @@ import { StaticImage as Image } from "@/components/static-image";
 import { pageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata(
-  "Power Your City Progression Guide",
-  "A cautious progression route for Power Your City that uses observed bottlenecks instead of invented tiers, prices, or output values.",
+  "Power Your City Progression: Upgrades, Rebirth & Base Lock",
+  "Power Your City progression route: balance panels and batteries, expand your plot, time speed upgrades, and know what rebirth resets and unlocks before you press it.",
   "/progression",
 );
 
@@ -30,7 +30,17 @@ export default function ProgressionPage() {
         <p>Make one meaningful change, then watch another complete cycle. If you change generation, storage, and timing together, you will not know which improvement helped.</p>
         <h2>Stage 4: shorten idle time</h2>
         <p>The goal is not merely bigger equipment. It is a smoother loop with less time spent waiting for production, waiting for capacity, or leaving the next action unclear.</p>
-        <h2>Stage 5: use the current in-game options</h2>
+        <h2 id="expand">Stage 5: expand space, then speed</h2>
+        <p>Creator guides report that Cash also unlocks more sections of your area, giving you room for more panels and batteries. Speed upgrades raise your movement speed; they are reported to matter most later, when sell trips get longer or you start stealing.</p>
+        <h2 id="rebirth">Stage 6: rebirth when the reset pays for itself</h2>
+        <p>A creator guide (Radex Tips, YouTube) reports that rebirth unlocks after you reach a Cash requirement. It is not in the official description, so treat these details as reported:</p>
+        <ul className="check-list">
+          <li><strong>Resets:</strong> your current Power, Cash and speed.</li>
+          <li><strong>Unlocks:</strong> new panels and batteries.</li>
+          <li><strong>Keeps forever:</strong> boosts to Cash, Power and your base lock.</li>
+        </ul>
+        <p>Guide strategy: spend your Cash on anything you can use right before you rebirth, because Cash is reset anyway. The exact rebirth cost and boost sizes are not published; read them on the rebirth screen.</p>
+        <h2>Stage 7: use the current in-game options</h2>
         <p>Official artwork depicts both basic-looking containers and advanced-looking machines. However, public sources do not supply names, unlock requirements, or exact values. Compare only the information the current interface provides when choosing between available options.</p>
         <div className="callout callout-yellow"><strong>About “ENERGY OFFLINE”</strong><p>Those words appear in the official experience icon. The public description does not confirm an offline-progress feature or explain any eligibility, cap, rate, or collection rule, so this guide does not promise one.</p></div>
         <p><Link className="text-link" href="/faq">Check careful answers to current feature questions →</Link></p>

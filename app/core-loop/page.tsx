@@ -6,8 +6,8 @@ import { PowerDiagram } from "@/components/power-diagram";
 import { pageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata(
-  "Power Your City Core Loop",
-  "Understand the verified Power Your City gameplay loop: generators, batteries, Cash sales, reinvestment, and multiplayer theft risk.",
+  "Power Your City Gameplay Loop: Generate, Store, Sell & Steal",
+  "How Power Your City works: panels make Power, batteries store it, you collect and sell it (with a negotiation roll), reinvest Cash and protect your base from thieves.",
   "/core-loop",
 );
 
@@ -22,11 +22,18 @@ export default function CoreLoopPage() {
         <h2>2. Storage keeps output usable</h2>
         <p>Batteries store Power. As a practical test, watch the visible flow over a complete cycle. An empty or full battery is a clue, not proof of a specific bottleneck, so change one variable and observe again.</p>
         <h2>3. City sales convert Power to Cash</h2>
-        <p>The official description says Power is sold around the city for Cash. It does not state a fixed route, multiplier, automatic collection rule, or best selling location. Treat any exact claim as unverified unless you can see it in the current interface.</p>
+        <p>The official description says Power is sold around the city for Cash. Creator guides add two details: you collect the Power your setup makes before selling it, and each sale offers a negotiation. One creator reports a 50% chance of a near-double payout, with a slightly lower payout on failure. The official <em>Auto Collect</em> game pass (299 Robux) automates the collecting step.</p>
         <h2>4. Cash supports the next cycle</h2>
-        <p>The public description does not spell out a complete upgrade system. As a guide strategy, use the current in-game choices to spend where the observed chain is constrained, then watch another cycle.</p>
+        <p>Creator guides describe three ways to spend: more or better panels, more or bigger batteries, and extra sections of your area for more building space. Speed upgrades make you move faster, which matters more once you sell farther away or steal. As a guide strategy, spend where the chain is slowest, then watch another cycle.</p>
         <h2>5. Theft changes the timing</h2>
-        <p>Stealing Power from other players is confirmed. The public page does not state what Power is targeted or document range, cooldowns, loss size, combat, shields, or protected zones, so this guide does not claim those rules.</p>
+        <p>Stealing Power from other players is confirmed. A creator guide reports how it plays out: the thief interacts with one of your batteries, carries some Power away and moves slowly until they get home or are caught. A green button outside your plant temporarily locks your base. Loss size and cooldowns are not published.</p>
+        <h2 id="game-passes">6. Official game passes (2 October 2026)</h2>
+        <ul className="check-list">
+          <li><strong>Auto Collect</strong> · 299 Robux</li>
+          <li><strong>x2 Generation Speed</strong> · 599 Robux</li>
+          <li><strong>Faster Restock</strong> · 79 Robux (shop items restock, so a sold-out item comes back later)</li>
+        </ul>
+        <p>Prices are from the official Roblox game-pass list on 2 October 2026 and can change. None is required to learn the loop.</p>
         <div className="callout"><strong>The one question to keep asking</strong><p>“Where did my cycle pause?” The answer—production, storage, selling, or loss to another player—points to the most useful next action.</p></div>
         <p><Link className="text-link" href="/quick-start">Return to the first-session checklist →</Link></p>
         <GuideNext href="/progression" title="Next: build a progression route" copy="Use visible constraints to decide what deserves the next purchase." />
