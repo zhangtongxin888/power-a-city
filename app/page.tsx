@@ -33,7 +33,7 @@ const routeCards = [
 
 const faqPreview = [
   ["Is this Power Your City or ⚡Power a City?", "This wiki covers Power Your City by Restore Power. ⚡Power a City by Vivat’s Workers is a separate Roblox game with its own codes."],
-  ["Are there working codes?", "TOTEM (2x Power for 5 minutes) is the only code three independent trackers list as active on 2 October 2026."],
+  ["Are there working codes?", "TOTEM (2x Power for 5 minutes) is the code UrGameTips and RoCodes list as active on 13 October 2026; other codes are disputed."],
   ["Can players steal Power?", "Yes, it is in the official description. Creator guides add that a thief is slowed until they get home, and a green base-lock button helps."],
 ] as const;
 

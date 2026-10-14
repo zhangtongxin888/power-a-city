@@ -11,8 +11,8 @@ export const site = {
   placeId: "81549698024226",
   universeId: "10297836599",
   verifiedOn: "2026-08-12",
-  checkedOn: "2026-10-02",
-  checkedOnLabel: "2 October 2026",
+  checkedOn: "2026-10-13",
+  checkedOnLabel: "13 October 2026",
 } as const;
 
 /** A separate Roblox experience whose title matches this guide's domain. Verified via the official Roblox games API on 2026-10-02. */
