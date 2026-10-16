@@ -98,6 +98,39 @@ test("code statuses keep their evidence states and the other game stays separate
   assert.match(codes, /BreadcrumbList/);
 });
 
+test("banner and native CSP uses scheme allowances and no ad-host allowlist", async () => {
+  const [vercel, worker, ads] = await Promise.all([
+    readFile(new URL("vercel.json", root), "utf8"),
+    readFile(new URL("worker/index.ts", root), "utf8"),
+    readFile(new URL("lib/adsterra.generated.ts", root), "utf8"),
+  ]);
+  const vercelPolicy = JSON.parse(vercel).headers.flatMap((block) => block.headers).find((header) => header.key === "Content-Security-Policy").value;
+  const workerPolicy = worker.match(/const CONTENT_SECURITY_POLICY = "([^"]+)"/)?.[1];
+  assert.equal(workerPolicy, vercelPolicy);
+  const directives = Object.fromEntries(vercelPolicy.split(";").map((part) => {
+    const [name, ...sources] = part.trim().split(/\s+/);
+    return [name, sources.join(" ")];
+  }));
+  for (const name of ["script-src", "style-src", "img-src", "font-src", "connect-src", "frame-src", "child-src", "worker-src", "media-src"]) {
+    assert.match(directives[name], /\bhttps:/, name);
+    assert.match(directives[name], /\bhttp:/, name);
+    assert.doesNotMatch(directives[name], /[a-z0-9-]+\.[a-z]{2,}/i, `${name} must not allowlist hosts`);
+  }
+  for (const name of ["script-src", "style-src", "img-src", "frame-src", "child-src", "worker-src", "media-src"]) assert.match(directives[name], /\bblob:/, name);
+  for (const name of ["script-src", "style-src", "img-src", "frame-src"]) assert.match(directives[name], /\bdata:/, name);
+  assert.match(directives["frame-src"], /\babout:/);
+  assert.match(directives["connect-src"], /\bwss:/);
+  assert.match(directives["connect-src"], /\bws:/);
+  assert.equal(directives["default-src"], "'self'");
+  assert.equal(directives["object-src"], "'none'");
+  assert.equal(directives["frame-ancestors"], "'self'");
+  assert.equal(directives["base-uri"], "'self'");
+  assert.match(directives["form-action"], /\bhttps:/);
+  assert.doesNotMatch(vercelPolicy, /\s\*(?:;|\s|$)/);
+  assert.match(ads, /adsterraEnablePopunder:\s*false/);
+  assert.match(ads, /adsterraEnableSocialBar:\s*false/);
+});
+
 test("only the homepage claims the wiki query and reported mechanics stay labelled", async () => {
   const sources = await Promise.all(pages.map(async (page) => [page, await readFile(new URL(page, root), "utf8")]));
   for (const [page, source] of sources) {
