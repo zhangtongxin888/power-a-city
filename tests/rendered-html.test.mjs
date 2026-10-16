@@ -131,6 +131,41 @@ test("banner and native CSP uses scheme allowances and no ad-host allowlist", as
   assert.match(ads, /adsterraEnableSocialBar:\s*false/);
 });
 
+test("content pages show three banner and native slots and legal routes stay clean", async () => {
+  const [layout, ads, generated, home, sources] = await Promise.all([
+    readFile(new URL("app/layout.tsx", root), "utf8"),
+    readFile(new URL("components/ads/index.tsx", root), "utf8"),
+    readFile(new URL("lib/adsterra.generated.ts", root), "utf8"),
+    readFile(new URL("app/page.tsx", root), "utf8"),
+    readFile(new URL("app/sources/page.tsx", root), "utf8"),
+  ]);
+  for (const slot of ["AdsterraArticleTop", "AdsterraArticleMid", "AdsterraArticleBottom"]) {
+    assert.equal(layout.split(`<${slot}`).length - 1, 1, slot);
+  }
+  assert.doesNotMatch(layout, /AdsterraGlobalFallback/);
+  const headerAt = layout.indexOf("<SiteHeader");
+  const topAt = layout.indexOf("<AdsterraArticleTop");
+  const mainAt = layout.indexOf("<main");
+  const childrenAt = layout.indexOf("{children}");
+  const midAt = layout.indexOf("<AdsterraArticleMid");
+  const bottomAt = layout.indexOf("<AdsterraArticleBottom");
+  const footerAt = layout.indexOf("<SiteFooter");
+  assert.ok(headerAt < topAt && topAt < mainAt && mainAt < childrenAt && childrenAt < midAt && midAt < bottomAt && bottomAt < footerAt);
+  for (const slot of ["AdsterraArticleTop", "AdsterraArticleMid", "AdsterraArticleBottom"]) {
+    const body = ads.slice(ads.indexOf(`function ${slot}`), ads.indexOf(`function ${slot}`) + 400);
+    assert.match(body, /useCleanAdRoute\(\)/, slot);
+  }
+  assert.match(ads, /export function AdsterraGlobalFallback\(\) \{\s*return null;/);
+  assert.match(ads, /"sources"/);
+  assert.doesNotMatch(`${home}\n${sources}`, /Adsterra|ad-placement/);
+  assert.match(generated, /adsterraBanner728x90Key: "1b7e9148d8b5d215a7fcbc13d22379ca"/);
+  assert.match(generated, /adsterraNative1Id: "container-306445dc1066ce0295e84a64f028b56c"/);
+  assert.match(generated, /adsterraBanner300x250Key: "567d4d1410bb7869aa6f7082738bf62c"/);
+  assert.match(generated, /adsterraEnablePopunder: false/);
+  assert.match(generated, /adsterraEnableSocialBar: false/);
+  assert.match(generated, /adsterraEnableStickyRail: false/);
+});
+
 test("only the homepage claims the wiki query and reported mechanics stay labelled", async () => {
   const sources = await Promise.all(pages.map(async (page) => [page, await readFile(new URL(page, root), "utf8")]));
   for (const [page, source] of sources) {

@@ -356,3 +356,15 @@ a:focus-visible,summary:focus-visible { outline:3px solid var(--amber); outline-
 .game-check-grid p { color:var(--muted); line-height:1.7; margin:0 0 8px; }
 @media (max-width: 760px) { .game-check-grid { grid-template-columns:1fr; } }
 @media (min-width:1051px) and (max-width:1240px) { .route-grid { grid-template-columns:repeat(3,1fr); } }
+
+.ad-placement { width:min(1180px,calc(100% - 48px)); margin:28px auto; display:flex; justify-content:center; }
+.ad-placement-top { width:100%; max-width:none; margin:0; padding:12px 16px 14px; background:#071421; border-bottom:1px solid #23394a; }
+.ad-placement-mid,.ad-placement-bottom { margin-top:8px; }
+.ad-shell { width:100%; display:flex; flex-direction:column; align-items:center; gap:6px; }
+.ad-label { color:var(--muted); font-size:10px; font-weight:850; letter-spacing:.14em; text-transform:uppercase; }
+.ad-placement-top .ad-label { color:#809aaa; }
+.ad-leaderboard,.ad-host { width:100%; display:flex; justify-content:center; }
+@media (max-width:800px) {
+  .ad-placement { width:min(100% - 32px,1180px); }
+  .ad-placement-top { width:100%; }
+}
