@@ -26,9 +26,14 @@ const staticSeoTypes: Record<string, string> = {
   "/manifest.webmanifest": "application/manifest+json; charset=utf-8",
 };
 
+// Banner and native creatives rotate hosts and also use http, blob, data, and
+// about URLs. Allow those schemes instead of an ad-host allowlist. Popunder and
+// social bar stay disabled in the ad runtime config.
+const CONTENT_SECURITY_POLICY = "default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self' https: http:; frame-ancestors 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https: http: blob: data:; style-src 'self' 'unsafe-inline' https: http: blob: data:; img-src 'self' data: blob: https: http:; font-src 'self' data: blob: https: http:; connect-src 'self' https: http: wss: ws:; frame-src https: http: blob: data: about:; child-src https: http: blob: data: about:; worker-src 'self' blob: data: https: http:; media-src 'self' data: blob: https: http:";
+
 function withHeaders(response: Response, request: Request, contentType?: string) {
   const headers = new Headers(response.headers);
-  headers.set("Content-Security-Policy", "default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; frame-ancestors 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: blob: https:; font-src 'self' data: https:; connect-src 'self' https:; frame-src https:; child-src https: blob:; worker-src 'self' blob:; media-src 'self' data: https:");
+  headers.set("Content-Security-Policy", CONTENT_SECURITY_POLICY);
   headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=()");
   headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   headers.set("X-Content-Type-Options", "nosniff");
