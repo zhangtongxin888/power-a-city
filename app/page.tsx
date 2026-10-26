@@ -4,7 +4,7 @@ import { StaticImage as Image } from "@/components/static-image";
 import { otherGame, pageMetadata, site } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata(
-  "Power a City Wiki: Power Your City Roblox Guide & Codes",
+  "Power a City Wiki (Roblox): Power Your City Guide & Codes",
   "Power a City wiki for Roblox Power Your City by Restore Power: a 5-minute starter route, checked code status, stealing, selling and rebirth tips.",
   "/",
 );
@@ -33,7 +33,7 @@ const routeCards = [
 
 const faqPreview = [
   ["Is this Power Your City or ⚡Power a City?", "This wiki covers Power Your City by Restore Power. ⚡Power a City by Vivat’s Workers is a separate Roblox game with its own codes."],
-  ["Are there working codes?", "TOTEM (2x Power for 5 minutes) is the code UrGameTips and RoCodes list as active on 13 October 2026; other codes are disputed."],
+  ["Are there working codes?", "TOTEM (2x Power for 5 minutes) is the code UrGameTips and RoCodes list as active on 25 October 2026; other codes are disputed."],
   ["Can players steal Power?", "Yes, it is in the official description. Creator guides add that a thief is slowed until they get home, and a green base-lock button helps."],
 ] as const;
 
@@ -95,7 +95,7 @@ export default function Home() {
           <p className="section-summary">Two different Roblox tycoons use almost the same name. Check the title and creator before you follow a guide or try a code.</p>
         </div>
         <div className="game-check-grid">
-          <article className="is-this-guide"><span className="fact-label fact-label-confirmed">THIS WIKI COVERS IT</span><h3>{site.gameName} · by {site.creator}</h3><p>Place panels and batteries, collect Power, sell it around the city for Cash, and steal Power from other players. Over 18.7 million visits on Roblox.</p><p><Link className="text-link" href="/codes">Power Your City codes →</Link></p></article>
+          <article className="is-this-guide"><span className="fact-label fact-label-confirmed">THIS WIKI COVERS IT</span><h3>{site.gameName} · by {site.creator}</h3><p>Place panels and batteries, collect Power, sell it around the city for Cash, and steal Power from other players. Over 23 million visits on Roblox (25 Oct 2026).</p><p><Link className="text-link" href="/codes">Power Your City codes →</Link></p></article>
           <article><span className="fact-label fact-label-unknown">DIFFERENT GAME</span><h3>{otherGame.name} · by {otherGame.creator}</h3><p>A separate game about connecting generators to villages and cities. Its codes (such as CITY13) and its guides do not apply to Power Your City.</p><p><Link className="text-link" href="/faq#which-game">How to tell them apart →</Link></p></article>
         </div>
       </section>

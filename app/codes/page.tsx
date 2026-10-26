@@ -6,16 +6,16 @@ import { otherGame, pageMetadata, safeJsonLd, site } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata(
   "Power Your City Codes (October 2026): TOTEM & Every Code Status",
-  "Power Your City codes checked 13 Oct 2026: TOTEM (2x Power, 5 min) is still reported working by multiple trackers. See which codes are disputed or from ⚡Power a City.",
+  "Power Your City codes checked 25 Oct 2026: TOTEM (2x Power, 5 min) is still reported working by multiple trackers. See which codes are disputed or from ⚡Power a City.",
   "/codes",
 );
 
 type CodeRow = { code: string; reward: string; status: "working" | "disputed" | "unverified"; label: string; evidence: string };
 
 const codes: CodeRow[] = [
-  { code: "TOTEM", reward: "2x Power for 5 minutes", status: "working", label: "Reported working · 3 sources", evidence: "Listed active by UrGameTips and RoCodes (both checked 13 Oct 2026), and earlier by Destructoid (1 Sep 2026). Dexerto's 7 Oct 2026 update no longer lists it. Not announced on an official page we can read." },
-  { code: "1MVISITS", reward: "2x Power for 5 minutes", status: "disputed", label: "Disputed · probably expired", evidence: "Dexerto (7 Oct 2026) and Destructoid list it as expired; UrGameTips and RoCodes (13 Oct 2026) still list it as active." },
-  { code: "100KMEMBERS", reward: "2x Cash for 5 minutes", status: "disputed", label: "Disputed · probably expired", evidence: "Dexerto (7 Oct 2026) and Destructoid list it as expired; UrGameTips and RoCodes (13 Oct 2026) still list it as active." },
+  { code: "TOTEM", reward: "2x Power for 5 minutes", status: "working", label: "Reported working · 3 sources", evidence: "Listed active by UrGameTips (updated 18 Oct 2026) and RoCodes (checked 25 Oct 2026), and earlier by Destructoid (1 Sep 2026). Dexerto's 7 Oct 2026 update no longer lists it. Not announced on an official page we can read." },
+  { code: "1MVISITS", reward: "2x Power for 5 minutes", status: "disputed", label: "Disputed · probably expired", evidence: "Dexerto (7 Oct 2026) and Destructoid list it as expired; UrGameTips (18 Oct 2026) and RoCodes (25 Oct 2026) still list it as active." },
+  { code: "100KMEMBERS", reward: "2x Cash for 5 minutes", status: "disputed", label: "Disputed · probably expired", evidence: "Dexerto (7 Oct 2026) and Destructoid list it as expired; UrGameTips (18 Oct 2026) and RoCodes (25 Oct 2026) still list it as active." },
   { code: "UPDATE2", reward: "100 Gems (one tracker)", status: "disputed", label: "Disputed", evidence: "Dexerto lists it as expired; RoCodes still lists it as active." },
   { code: "20KLIKES", reward: "2x Cash for 5 minutes (one tracker)", status: "unverified", label: "Unverified · 1 source", evidence: "Only RoCodes lists it (added 28 Aug 2026). No second source found." },
   { code: "SOLARPOWER", reward: "Wheel spin (one tracker)", status: "unverified", label: "Unverified · 1 source", evidence: "Only RoCodes lists it (added 28 Aug 2026). No second source found." },
@@ -24,9 +24,9 @@ const codes: CodeRow[] = [
 const wrongGameCodes = ["CITY13", "6DOCKS", "2MVISITS", "67BLACK67", "RELEASE"];
 
 const faqItems = [
-  ["What are the working Power Your City codes?", "As of 13 October 2026, TOTEM is the code most trackers list as active (UrGameTips and RoCodes re-checked it that day). It is reported to give 2x Power for 5 minutes. Other codes are disputed or listed by a single tracker."],
+  ["What are the working Power Your City codes?", "As of 25 October 2026, TOTEM is the code most trackers list as active (UrGameTips updated 18 Oct, RoCodes re-checked 25 Oct). It is reported to give 2x Power for 5 minutes. Other codes are disputed or listed by a single tracker."],
   ["How do I redeem codes in Power Your City?", "Open Power Your City, press the Settings button on the left side of the screen, scroll to the bottom of the Settings menu, type the code exactly, and press Claim."],
-  ["Why is CITY13 not working in Power Your City?", "CITY13 is reported for a different Roblox game, ⚡Power a City by Vivat's Workers (PCGamesN, 7 Oct 2026). One Power Your City code list added it on 7 October 2026, but no Power Your City tracker or announcement backs it, so it is not listed as a Power Your City code here."],
+  ["Why is CITY13 not working in Power Your City?", "CITY13 is reported for a different Roblox game, ⚡Power a City by Vivat's Workers (PCGamesN, 7 Oct 2026). Dexerto's Power Your City list added it on 7 October 2026 and had not corrected it when we rechecked on 25 October 2026, but UrGameTips and RoCodes (both 25 Oct 2026) list CITY13 under ⚡Power a City, and no Power Your City tracker or announcement backs it, so it is not listed as a Power Your City code here."],
 ] as const;
 
 const jsonLd = [
@@ -94,7 +94,7 @@ export default function CodesPage() {
         </ol>
 
         <h2 id="new-codes">Where new codes come from</h2>
-        <p>Past code names match player milestones: 1MVISITS, 100KMEMBERS and 20KLIKES. The game now has more than 18.7 million visits, and the Restore Power group has more than 1 million members (official Roblox APIs, {site.checkedOnLabel}). That pattern suggests new codes arrive with updates or milestones, but nothing official confirms a schedule. Code sites say new codes are posted in the game’s Discord first.</p>
+        <p>Past code names match player milestones: 1MVISITS, 100KMEMBERS and 20KLIKES. The game now has more than 23 million visits, and the Restore Power group has more than 1.2 million members (official Roblox APIs, {site.checkedOnLabel}). That pattern suggests new codes arrive with updates or milestones, but nothing official confirms a schedule. Code sites say new codes are posted in the game’s Discord first.</p>
         <p><Link className="text-link" href="/quick-start">New player? Use your boost on the five-minute starter route →</Link></p>
         <GuideNext href="/quick-start" title="Next: run your first power cycle" copy="Place a panel, add a battery, collect and sell before you spend a boost." />
       </article>
