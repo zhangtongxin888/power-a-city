@@ -37,7 +37,7 @@ export default function QuickStartPage() {
           <li><strong>Negotiate the price.</strong> One creator reports a 50% chance of nearly doubling the payout and a slightly lower payout if it fails.</li>
           <li><strong>Reinvest</strong> in whichever side is behind: panels if batteries stay empty, batteries if they fill up and wait.</li>
         </ol>
-        <div className="callout"><strong>Got a boost code?</strong><p>TOTEM is reported to give 2x Power for 5 minutes. Use it when your panels are running and your batteries have room. <Link href="/codes">Check every Power Your City code →</Link></p></div>
+        <div className="callout"><strong>Got a boost code?</strong><p>TOTEM gives 2x Power for 5 minutes (official code list, rewards per Roblox Den and RoCodes, 3 Nov 2026). Use it when your panels are running and your batteries have room. SOLARPOWER and MUTATIONS give a wheel spin and 500 Gems. <Link href="/codes">Check every Power Your City code →</Link></p></div>
         <PowerDiagram />
         <figure><Image src="/game/official-connect-power.png" alt="Official artwork showing a player beside a solar panel and cable-like power equipment" width={768} height={432} /><figcaption>Official game artwork depicting a solar panel and cable-like equipment. It does not verify exact interaction controls.</figcaption></figure>
         <h2>Your first-session checklist</h2>

@@ -4,8 +4,8 @@ import { StaticImage as Image } from "@/components/static-image";
 import { otherGame, pageMetadata, site } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata(
-  "Power a City Wiki (Roblox): Power Your City Guide & Codes",
-  "Power a City wiki for Roblox Power Your City by Restore Power: a 5-minute starter route, checked code status, stealing, selling and rebirth tips.",
+  "Power a City Wiki (Roblox): Power Your City Codes & Guide",
+  "Power a City wiki for Roblox Power Your City: codes SOLARPOWER, MUTATIONS, TOTEM (checked 3 Nov), a 5-minute starter route, stealing, selling and rebirth tips.",
   "/",
 );
 
@@ -28,12 +28,12 @@ const routeCards = [
   ["SYSTEM MAP", "Core loop", "Understand how the confirmed actions connect.", "/core-loop"],
   ["GRID EXPANSION", "Progression", "Improve the link that is visibly slowing you down.", "/progression"],
   ["FAULT LOG", "Common mistakes", "Recover from seven early setup problems.", "/mistakes"],
-  ["CODE STATUS", "Codes", "TOTEM plus the real status of every other code.", "/codes"],
+  ["CODE STATUS", "Codes", "SOLARPOWER, MUTATIONS, TOTEM, 20KLIKES and the status of every other code.", "/codes"],
 ] as const;
 
 const faqPreview = [
   ["Is this Power Your City or ⚡Power a City?", "This wiki covers Power Your City by Restore Power. ⚡Power a City by Vivat’s Workers is a separate Roblox game with its own codes."],
-  ["Are there working codes?", "TOTEM (2x Power for 5 minutes) is the code UrGameTips and RoCodes list as active on 25 October 2026; other codes are disputed."],
+  ["Are there working codes?", "Yes. On 3 November 2026 the official game description lists SOLARPOWER, MUTATIONS, TOTEM and 20KLIKES; trackers confirm the rewards. Older codes are disputed."],
   ["Can players steal Power?", "Yes, it is in the official description. Creator guides add that a thief is slowed until they get home, and a green base-lock button helps."],
 ] as const;
 

@@ -5,28 +5,29 @@ import { GuideNext } from "@/components/guide-next";
 import { otherGame, pageMetadata, safeJsonLd, site } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata(
-  "Power Your City Codes (October 2026): TOTEM & Every Code Status",
-  "Power Your City codes checked 25 Oct 2026: TOTEM (2x Power, 5 min) is still reported working by multiple trackers. See which codes are disputed or from ⚡Power a City.",
+  "Power Your City Codes (Nov 2026): SOLARPOWER, MUTATIONS, TOTEM",
+  "Power Your City codes checked 3 Nov 2026: SOLARPOWER, MUTATIONS, TOTEM and 20KLIKES are on the official Roblox page. Rewards, redeem steps and disputed codes.",
   "/codes",
 );
 
 type CodeRow = { code: string; reward: string; status: "working" | "disputed" | "unverified"; label: string; evidence: string };
 
 const codes: CodeRow[] = [
-  { code: "TOTEM", reward: "2x Power for 5 minutes", status: "working", label: "Reported working · 3 sources", evidence: "Listed active by UrGameTips (updated 18 Oct 2026) and RoCodes (checked 25 Oct 2026), and earlier by Destructoid (1 Sep 2026). Dexerto's 7 Oct 2026 update no longer lists it. Not announced on an official page we can read." },
-  { code: "1MVISITS", reward: "2x Power for 5 minutes", status: "disputed", label: "Disputed · probably expired", evidence: "Dexerto (7 Oct 2026) and Destructoid list it as expired; UrGameTips (18 Oct 2026) and RoCodes (25 Oct 2026) still list it as active." },
-  { code: "100KMEMBERS", reward: "2x Cash for 5 minutes", status: "disputed", label: "Disputed · probably expired", evidence: "Dexerto (7 Oct 2026) and Destructoid list it as expired; UrGameTips (18 Oct 2026) and RoCodes (25 Oct 2026) still list it as active." },
-  { code: "UPDATE2", reward: "100 Gems (one tracker)", status: "disputed", label: "Disputed", evidence: "Dexerto lists it as expired; RoCodes still lists it as active." },
-  { code: "20KLIKES", reward: "2x Cash for 5 minutes (one tracker)", status: "unverified", label: "Unverified · 1 source", evidence: "Only RoCodes lists it (added 28 Aug 2026). No second source found." },
-  { code: "SOLARPOWER", reward: "Wheel spin (one tracker)", status: "unverified", label: "Unverified · 1 source", evidence: "Only RoCodes lists it (added 28 Aug 2026). No second source found." },
+  { code: "SOLARPOWER", reward: "1 Wheel Spin", status: "working", label: "Official list · working", evidence: "Named in the official Roblox game description (checked 3 Nov 2026). Roblox Den (checked 1 Nov 2026) lists it as active for 1 Wheel Spin; RoCodes (checked 3 Nov 2026) also lists a Wheel Spin." },
+  { code: "MUTATIONS", reward: "500 Gems", status: "working", label: "Official list · working", evidence: "Named in the official Roblox game description (checked 3 Nov 2026). Roblox Den (1 Nov 2026) lists 500 Gems; RoCodes added it on 31 Oct 2026." },
+  { code: "TOTEM", reward: "2x Power for 5 minutes", status: "working", label: "Official list · working", evidence: "Named in the official Roblox game description (checked 3 Nov 2026). Roblox Den (1 Nov 2026), RoCodes (3 Nov 2026) and UrGameTips (18 Oct 2026) list it as active." },
+  { code: "20KLIKES", reward: "2x Cash for 5 minutes", status: "working", label: "Official list · working", evidence: "Named in the official Roblox game description (checked 3 Nov 2026). Roblox Den (1 Nov 2026) and RoCodes (3 Nov 2026) list 2x Cash for 5 minutes." },
+  { code: "1MVISITS", reward: "2x Power for 5 minutes", status: "disputed", label: "Disputed · not on official list", evidence: "Not in the official description on 3 Nov 2026. Roblox Den and RoCodes still list it as active; Dexerto (7 Oct 2026) and Destructoid list it as expired." },
+  { code: "100KMEMBERS", reward: "2x Cash for 5 minutes", status: "disputed", label: "Disputed · not on official list", evidence: "Not in the official description on 3 Nov 2026. Roblox Den and RoCodes still list it as active; Dexerto (7 Oct 2026) and Destructoid list it as expired." },
+  { code: "UPDATE2", reward: "100 Gems (one tracker)", status: "disputed", label: "Disputed · not on official list", evidence: "Not in the official description on 3 Nov 2026 and not on Roblox Den. RoCodes still lists it; Dexerto lists it as expired." },
 ];
 
 const wrongGameCodes = ["CITY13", "6DOCKS", "2MVISITS", "67BLACK67", "RELEASE"];
 
 const faqItems = [
-  ["What are the working Power Your City codes?", "As of 25 October 2026, TOTEM is the code most trackers list as active (UrGameTips updated 18 Oct, RoCodes re-checked 25 Oct). It is reported to give 2x Power for 5 minutes. Other codes are disputed or listed by a single tracker."],
+  ["What are the working Power Your City codes?", "As of 3 November 2026, the official Roblox game description lists four codes: SOLARPOWER (1 Wheel Spin), MUTATIONS (500 Gems), TOTEM (2x Power for 5 minutes) and 20KLIKES (2x Cash for 5 minutes). Rewards are from Roblox Den and RoCodes. 1MVISITS, 100KMEMBERS and UPDATE2 are not on the official list and are disputed."],
   ["How do I redeem codes in Power Your City?", "Open Power Your City, press the Settings button on the left side of the screen, scroll to the bottom of the Settings menu, type the code exactly, and press Claim."],
-  ["Why is CITY13 not working in Power Your City?", "CITY13 is reported for a different Roblox game, ⚡Power a City by Vivat's Workers (PCGamesN, 7 Oct 2026). Dexerto's Power Your City list added it on 7 October 2026 and had not corrected it when we rechecked on 25 October 2026, but UrGameTips and RoCodes (both 25 Oct 2026) list CITY13 under ⚡Power a City, and no Power Your City tracker or announcement backs it, so it is not listed as a Power Your City code here."],
+  ["Why is CITY13 not working in Power Your City?", "CITY13 is reported for a different Roblox game, ⚡Power a City by Vivat's Workers (PCGamesN, 7 Oct 2026). Dexerto's Power Your City list added it on 7 October 2026 and had not corrected it when we rechecked on 3 November 2026, but UrGameTips and RoCodes (both 25 Oct 2026) list CITY13 under ⚡Power a City, and no Power Your City tracker or announcement backs it, so it is not listed as a Power Your City code here."],
 ] as const;
 
 const jsonLd = [
@@ -40,12 +41,12 @@ const jsonLd = [
 export default function CodesPage() {
   return (
     <>
-      <PageHero eyebrow={`CODE STATUS · CHECKED ${site.checkedOnLabel.toUpperCase()}`} title="POWER YOUR CITY CODES" intro="Short answer: try TOTEM first. It is the only Power Your City code that three independent trackers list as active, and it is reported to give 2x Power for 5 minutes." actionHref="#code-table" actionLabel="See every code status" />
+      <PageHero eyebrow={`CODE STATUS · CHECKED ${site.checkedOnLabel.toUpperCase()}`} title="POWER YOUR CITY CODES" intro="Short answer: redeem SOLARPOWER, MUTATIONS, TOTEM and 20KLIKES. Those four are written in the official Roblox game description, and code trackers list them as active." actionHref="#code-table" actionLabel="See every code status" />
       <article className="article">
-        <div className="callout"><strong>Reported working right now: TOTEM</strong><p><code>TOTEM</code> → 2x Power for 5 minutes. Codes are case-sensitive in most Roblox games, so type it in capitals. Redeem it while your generators are running and your batteries have room, so the boost is not wasted.</p></div>
+        <div className="callout"><strong>On the official list right now (3 Nov 2026)</strong><p><code>SOLARPOWER</code> → 1 Wheel Spin · <code>MUTATIONS</code> → 500 Gems · <code>TOTEM</code> → 2x Power for 5 minutes · <code>20KLIKES</code> → 2x Cash for 5 minutes. Type them in capitals. Redeem the two timed boosts while your generators are running and your batteries have room, so the boost is not wasted. The game page also says “50K LIKES = NEW CODE!” (about 42,500 likes on 3 Nov 2026).</p></div>
 
         <h2 id="code-table">All Power Your City codes and their status</h2>
-        <p>We only call a code “working” when at least three independent sources list it as active. Everything else keeps its real status so you can decide whether it is worth a try.</p>
+        <p>We call a code “working” when the official Roblox game description names it and at least one code tracker lists it as active. Everything else keeps its real status so you can decide whether it is worth a try.</p>
         <div className="table-wrap">
           <table className="code-table">
             <thead><tr><th scope="col">Code</th><th scope="col">Reported reward</th><th scope="col">Status</th><th scope="col">Evidence</th></tr></thead>
@@ -61,7 +62,7 @@ export default function CodesPage() {
             </tbody>
           </table>
         </div>
-        <p className="table-note">Checked {site.checkedOnLabel}. Reward names come from the code trackers, not from an official Restore Power announcement.</p>
+        <p className="table-note">Checked {site.checkedOnLabel}. Code names come from the official Roblox description; reward amounts come from the code trackers because the official text does not state them.</p>
 
         <h2 id="redeem">How to redeem codes in Power Your City</h2>
         <ol className="flow-list">
@@ -94,7 +95,7 @@ export default function CodesPage() {
         </ol>
 
         <h2 id="new-codes">Where new codes come from</h2>
-        <p>Past code names match player milestones: 1MVISITS, 100KMEMBERS and 20KLIKES. The game now has more than 23 million visits, and the Restore Power group has more than 1.2 million members (official Roblox APIs, {site.checkedOnLabel}). That pattern suggests new codes arrive with updates or milestones, but nothing official confirms a schedule. Code sites say new codes are posted in the game’s Discord first.</p>
+        <p>Past code names match player milestones: 1MVISITS, 100KMEMBERS and 20KLIKES. The game now has more than 23.7 million visits, and the Restore Power group has more than 1.26 million members (official Roblox APIs, {site.checkedOnLabel}). That pattern suggests new codes arrive with updates or milestones, but nothing official confirms a schedule. Code sites say new codes are posted in the game’s Discord first.</p>
         <p><Link className="text-link" href="/quick-start">New player? Use your boost on the five-minute starter route →</Link></p>
         <GuideNext href="/quick-start" title="Next: run your first power cycle" copy="Place a panel, add a battery, collect and sell before you spend a boost." />
       </article>

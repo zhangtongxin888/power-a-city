@@ -89,10 +89,9 @@ test("redesign keeps the first viewport tutorial-first and adds retention sectio
 
 test("code statuses keep their evidence states and the other game stays separate", async () => {
   const codes = await readFile(new URL("app/codes/page.tsx", root), "utf8");
-  assert.match(codes, /code: "TOTEM"[^}]*status: "working"[^}]*3 sources/);
+  for (const code of ["SOLARPOWER", "MUTATIONS", "TOTEM", "20KLIKES"]) assert.match(codes, new RegExp(`code: "${code}"[^}]*status: "working"[^}]*official Roblox game description`));
   for (const code of ["1MVISITS", "100KMEMBERS", "UPDATE2"]) assert.match(codes, new RegExp(`code: "${code}"[^}]*status: "disputed"`));
-  for (const code of ["20KLIKES", "SOLARPOWER"]) assert.match(codes, new RegExp(`code: "${code}"[^}]*status: "unverified"`));
-  assert.equal((codes.match(/status: "working",/g) ?? []).length, 1, "only codes with three independent sources may be labelled working");
+  assert.equal((codes.match(/status: "working",/g) ?? []).length, 4, "only codes named in the official description and listed by a tracker may be labelled working");
   assert.match(codes, /const wrongGameCodes = \["CITY13"/);
   assert.match(codes, /FAQPage/);
   assert.match(codes, /BreadcrumbList/);
